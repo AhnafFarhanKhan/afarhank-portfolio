@@ -1,8 +1,0 @@
-# Clean public URLs for Cloudflare Pages.
-# Visitors see /projects instead of /projects.html, while the physical files stay simple.
-/projects        /projects.html        200
-/awards          /awards.html          200
-/certifications  /certifications.html  200
-/blog            /blog.html            200
-/contact         /contact.html         200
-/about           /about.html           200
