@@ -1,68 +1,179 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Basic document metadata and SEO. -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Awards — Ahnaf Farhan Khan</title>
-  <meta name="description" content="Academic awards and recognition for Ahnaf Farhan Khan.">
-  <meta name="theme-color" content="#0a0a09">
+  <meta name="description" content="Academic awards and recognition received by Ahnaf Farhan Khan at the University of Calgary.">
+  <meta name="author" content="Ahnaf Farhan Khan">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#090909">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Canonical URL tells search engines which public URL is the main one. -->
+  <link rel="canonical" href="https://afarhank.dev/awards">
+
+  <!-- Open Graph / social sharing metadata. -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Awards — Ahnaf Farhan Khan">
-  <meta property="og:description" content="Academic awards and recognition for Ahnaf Farhan Khan.">
+  <meta property="og:description" content="Academic awards and recognition received by Ahnaf Farhan Khan at the University of Calgary.">
+  <meta property="og:url" content="https://afarhank.dev/awards">
   <meta property="og:site_name" content="Ahnaf Farhan Khan">
-  <link rel="canonical" href="https://afarhank.dev/awards.html">
-  <meta property="og:url" content="https://afarhank.dev/awards.html">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
-  <link rel="stylesheet" href="style.css">
+  <meta property="og:image" content="https://afarhank.dev/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- X/Twitter uses the same large social preview card. -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Awards — Ahnaf Farhan Khan">
+  <meta name="twitter:description" content="Academic awards and recognition received by Ahnaf Farhan Khan at the University of Calgary.">
+  <meta name="twitter:image" content="https://afarhank.dev/assets/og-card.png">
+
+  <!-- The favicon is derived from the user's AFK signature. -->
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!--
+    Apply a saved light theme before CSS loads to prevent a white/dark flash.
+    Dark remains the default when the visitor has not chosen a theme.
+  -->
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.dataset.theme = "light";
+      }
+    } catch (_) {}
+  </script>
+
+  <!-- One shared stylesheet keeps every page visually consistent. -->
+  <link rel="stylesheet" href="/style.css">
+
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
+
+<!-- Sticky global header: signature left, navigation and theme controls right. -->
 <header class="site-header">
   <div class="shell header-inner">
-    <a class="signature-mark" href="index.html" aria-label="Ahnaf Farhan Khan — home">
-      <img src="assets/AFK-signature.png" alt="Ahnaf Farhan Khan signature">
+    <!-- The signature links back to the homepage. -->
+    <a class="signature-mark" href="/" aria-label="Ahnaf Farhan Khan — home">
+      <img src="/assets/AFK-signature.png" alt="AFK signature logo" width="270" height="112">
     </a>
+
     <div class="header-actions">
+      <!-- Full navigation is shown on desktop. -->
       <nav class="primary-nav" aria-label="Primary navigation">
-        <a href="about.html">about</a>
-        <a href="projects.html">projects</a>
-        <a href="blog.html">blog</a>
+        <a href="/projects">projects</a>
+        <a href="/awards" aria-current="page">awards</a>
+        <a href="/certifications">certifications</a>
+        <a href="https://github.com/AhnafFarhanKhan" target="_blank" rel="noopener noreferrer">github <span class="external-mark" aria-hidden="true">↗</span></a>
+        <a href="https://www.linkedin.com/in/ahnaf-farhan/" target="_blank" rel="noopener noreferrer">linkedin <span class="external-mark" aria-hidden="true">↗</span></a>
+        <a href="/blog">blog</a>
+        <a href="/contact">contact</a>
       </nav>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme" aria-pressed="false">
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.4 8.4 0 0 1 8.8 4 8.7 8.7 0 1 0 20 15.2Z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>
+
+      <!-- Dark is the default. This button switches between dark and light themes. -->
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-label="Switch to light theme"
+        title="Switch to light theme"
+        aria-pressed="false"
+      >
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 15.2A8.4 8.4 0 0 1 8.8 4 8.7 8.7 0 1 0 20 15.2Z"></path>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.5"></circle>
+          <path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path>
+        </svg>
+      </button>
+
+      <!-- On smaller screens, the long navigation collapses into this menu button. -->
+      <button
+        class="menu-toggle"
+        type="button"
+        data-menu-toggle
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+      >
+        <span class="menu-toggle-lines" aria-hidden="true"></span>
       </button>
     </div>
   </div>
+
+  <!-- Mobile navigation contains the same destinations as the desktop navigation. -->
+  <nav
+    class="mobile-nav-panel"
+    id="mobile-navigation"
+    data-mobile-nav
+    aria-label="Mobile navigation"
+  >
+    <a href="/projects">projects</a>
+    <a href="/awards" aria-current="page">awards</a>
+    <a href="/certifications">certifications</a>
+    <a href="https://github.com/AhnafFarhanKhan" target="_blank" rel="noopener noreferrer">github <span class="external-mark" aria-hidden="true">↗</span></a>
+    <a href="https://www.linkedin.com/in/ahnaf-farhan/" target="_blank" rel="noopener noreferrer">linkedin <span class="external-mark" aria-hidden="true">↗</span></a>
+    <a href="/blog">blog</a>
+    <a href="/contact">contact</a>
+  </nav>
 </header>
+
 <main id="main-content">
+<!-- Page introduction. -->
 <section class="page-hero shell">
-  <p class="page-eyebrow">03 / awards</p>
+  <p class="page-eyebrow">02 / awards</p>
   <h1>Recognition.</h1>
-  <p>A small record of academic awards and recognition.</p>
+  <p>A concise record of academic recognition from the University of Calgary.</p>
 </section>
-<section class="page-section shell">
+
+<!-- Awards are kept as simple rows instead of resume-style cards. -->
+<section class="page-section shell" aria-labelledby="awards-list-title">
+  <h2 id="awards-list-title" class="sr-only">Awards list</h2>
+
   <div class="award-list">
-    <article class="award-item"><p>Dean’s List — Faculty of Science, University of Calgary</p><span class="year">2024–2026</span></article>
-    <article class="award-item"><p>University of Calgary International Undergraduate Award</p><span class="year">2026</span></article>
-    <article class="award-item"><p>Dean’s International Admission &amp; President’s Admission Scholarship</p><span class="year">2024</span></article>
+    <article class="award-item" data-reveal>
+      <p>Dean’s List — Faculty of Science, University of Calgary</p>
+      <span class="year">2024 — 2026</span>
+    </article>
+
+    <article class="award-item" data-reveal style="--reveal-delay: 70ms;">
+      <p>University of Calgary International Undergraduate Award</p>
+      <span class="year">2026</span>
+    </article>
+
+    <article class="award-item" data-reveal style="--reveal-delay: 140ms;">
+      <p>Dean’s International Admission &amp; President’s Admission Scholarship</p>
+      <span class="year">2024</span>
+    </article>
   </div>
 </section>
 </main>
+
+<!-- Footer repeats the main destinations so navigation is available at the end of every page. -->
 <footer class="site-footer">
   <div class="shell footer-inner">
     <p class="footer-copy">© 2026 Ahnaf Farhan Khan</p>
-    <nav class="footer-nav" aria-label="Secondary navigation">
-      <a href="awards.html">awards</a>
-      <a href="certifications.html">certifications</a>
-      <a href="contact.html">contact</a>
-      <a href="https://github.com/AhnafFarhanKhan" target="_blank" rel="noopener noreferrer">github ↗</a>
-      <a href="https://www.linkedin.com/in/ahnaf-farhan/" target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="/projects">projects</a>
+        <a href="/awards" aria-current="page">awards</a>
+        <a href="/certifications">certifications</a>
+        <a href="https://github.com/AhnafFarhanKhan" target="_blank" rel="noopener noreferrer">github <span class="external-mark" aria-hidden="true">↗</span></a>
+        <a href="https://www.linkedin.com/in/ahnaf-farhan/" target="_blank" rel="noopener noreferrer">linkedin <span class="external-mark" aria-hidden="true">↗</span></a>
+        <a href="/blog">blog</a>
+        <a href="/contact">contact</a>
     </nav>
   </div>
 </footer>
-<script src="script.js" defer></script>
+
+<!-- One shared script powers theme switching, menus, typewriter, reveal, and copy-email. -->
+<script src="/script.js" defer></script>
 </body>
 </html>

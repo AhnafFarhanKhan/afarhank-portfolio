@@ -1,22 +1,32 @@
-AFARHANK.DEV — PORTFOLIO V2
+afarhank.dev — portfolio v3
+===========================
 
-Main files
-- index.html: homepage
-- about.html: about page
-- projects.html: project titles
-- awards.html: awards
-- certifications.html: certifications / currently working on
-- blog.html: future blog
-- contact.html: contact + Copy Email
-- style.css: all styling, dark/light themes, responsive layout, animations
-- script.js: theme toggle, typewriter, scroll reveal, Copy Email
-- assets/AFK-signature.png: your uploaded signature
+WHAT CHANGED
+------------
+- User-provided AFK signature is tightly cropped and visible in the top-left.
+- Signature automatically appears white in dark mode and black in light mode.
+- Signature artwork is also used to create the browser favicon.
+- Default dark theme + remembered light theme option.
+- Slow red glow drift + extremely subtle animated grain in both themes.
+- Animated hand-drawn red underline under "Farhan".
+- Rebuilt, stable typewriter: CS Student / Developer / Problem Solver.
+- One-time 20px / 500ms fade-up reveal animations.
+- Compact homepage spacing and smaller #more section.
+- Desktop top navigation and footer both include:
+  projects, awards, certifications, GitHub, LinkedIn, blog, contact.
+- Mobile navigation collapses into a simple menu.
+- Contact page keeps Copy Email -> Copied ✓ for two seconds.
+- SEO: canonical URLs, descriptions, Open Graph image, Person structured data,
+  sitemap, robots.txt, web manifest, favicon, Apple touch icon, and 404 page.
+- Clean URLs on Cloudflare Pages via the _redirects file.
 
-Quick edits
-1. Project titles: edit index.html and projects.html.
-2. Certification: search certifications.html for [CERTIFICATION NAME].
-3. Hero intro: edit the hero-lede paragraph in index.html.
-4. Email: search for ahnaffarhankhan@gmail.com.
-5. Typewriter words: edit the phrases array in script.js.
+DEPLOYING THIS VERSION
+----------------------
+Replace the files in your existing GitHub repository with the contents of this
+folder, then commit the changes. Because the repository is already connected to
+Cloudflare Pages, Cloudflare should deploy the update automatically.
 
-The default theme is dark. The light/dark choice is saved in the visitor's browser.
+IMPORTANT
+---------
+Keep index.html, style.css, script.js, _redirects, robots.txt, sitemap.xml,
+site.webmanifest, and the assets folder at the repository root.

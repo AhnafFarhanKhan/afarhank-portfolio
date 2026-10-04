@@ -1,3 +1,6 @@
+# Allow normal search-engine crawling.
 User-agent: *
 Allow: /
+
+# Point crawlers to the canonical sitemap.
 Sitemap: https://afarhank.dev/sitemap.xml

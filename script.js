@@ -1,126 +1,212 @@
-(() => {
-  const root = document.documentElement;
-  const themeButton = document.querySelector('[data-theme-toggle]');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ================================================================
+   afarhank.dev — shared interactions
+   Plain JavaScript only. Each feature is isolated so one failure does
+   not break the rest of the website.
+   ================================================================ */
 
+(() => {
+  "use strict";
+
+  const root = document.documentElement;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- 1. Dark / light theme ---------- */
+  const themeButton = document.querySelector("[data-theme-toggle]");
+
+  // Apply a theme and optionally remember it for the visitor's next page load.
   function applyTheme(theme, persist = true) {
-    const next = theme === 'light' ? 'light' : 'dark';
-    root.dataset.theme = next;
+    const nextTheme = theme === "light" ? "light" : "dark";
+    root.dataset.theme = nextTheme;
+
+    // Keep the browser toolbar color in sync with the selected theme.
     const themeMeta = document.querySelector('meta[name="theme-color"]');
-    if (themeMeta) themeMeta.setAttribute('content', next === 'light' ? '#f6f3eb' : '#0a0a09');
-    if (persist) {
-      try { localStorage.setItem('theme', next); } catch (_) {}
+    if (themeMeta) {
+      themeMeta.setAttribute("content", nextTheme === "light" ? "#f7f5ef" : "#090909");
     }
+
+    // Remember the user's choice when storage is available.
+    if (persist) {
+      try {
+        localStorage.setItem("theme", nextTheme);
+      } catch (_) {
+        // Storage can be blocked in privacy modes; the site still works without it.
+      }
+    }
+
+    // Keep the theme button accessible and descriptive.
     if (themeButton) {
-      const isLight = next === 'light';
-      themeButton.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
-      themeButton.setAttribute('title', isLight ? 'Switch to dark theme' : 'Switch to light theme');
-      themeButton.setAttribute('aria-pressed', String(isLight));
+      const isLight = nextTheme === "light";
+      const label = isLight ? "Switch to dark theme" : "Switch to light theme";
+      themeButton.setAttribute("aria-label", label);
+      themeButton.setAttribute("title", label);
+      themeButton.setAttribute("aria-pressed", String(isLight));
     }
   }
 
-  let savedTheme = 'dark';
-  try { savedTheme = localStorage.getItem('theme') || 'dark'; } catch (_) {}
+  // Dark is the default; a previously saved light preference wins.
+  let savedTheme = "dark";
+  try {
+    savedTheme = localStorage.getItem("theme") || "dark";
+  } catch (_) {
+    savedTheme = "dark";
+  }
   applyTheme(savedTheme, false);
 
-  themeButton?.addEventListener('click', () => {
-    applyTheme(root.dataset.theme === 'light' ? 'dark' : 'light');
+  themeButton?.addEventListener("click", () => {
+    applyTheme(root.dataset.theme === "light" ? "dark" : "light");
   });
 
-  const typeTarget = document.querySelector('[data-typewriter]');
-  const cursor = document.querySelector('.type-cursor');
-  const phrases = ['CS Student', 'Developer', 'Problem Solver'];
+  /* ---------- 2. Responsive navigation ---------- */
+  const menuButton = document.querySelector("[data-menu-toggle]");
+  const mobileMenu = document.querySelector("[data-mobile-nav]");
 
-  if (typeTarget) {
-    if (reduceMotion) {
+  function closeMobileMenu() {
+    if (!menuButton || !mobileMenu) return;
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open navigation menu");
+    mobileMenu.classList.remove("is-open");
+  }
+
+  menuButton?.addEventListener("click", () => {
+    if (!mobileMenu) return;
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!isOpen));
+    menuButton.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+    mobileMenu.classList.toggle("is-open", !isOpen);
+  });
+
+  // Close the menu after choosing a destination.
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMobileMenu);
+  });
+
+  // Escape closes the menu for keyboard users.
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMobileMenu();
+  });
+
+  /* ---------- 3. Smooth typewriter hero ---------- */
+  const typeTarget = document.querySelector("[data-typewriter]");
+
+  // Small Promise helper keeps the timing logic readable and consistent.
+  const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+
+  async function runTypewriter() {
+    if (!typeTarget) return;
+
+    const rawPhrases = typeTarget.dataset.typewriter || "CS Student|Developer|Problem Solver";
+    const phrases = rawPhrases.split("|").map((phrase) => phrase.trim()).filter(Boolean);
+
+    if (!phrases.length) return;
+
+    // Reduced-motion visitors see a stable phrase instead of animated typing.
+    if (prefersReducedMotion) {
       typeTarget.textContent = phrases[0];
-      cursor?.setAttribute('hidden', '');
-    } else {
-      let phraseIndex = 0;
-      let charIndex = 0;
-      let deleting = false;
+      return;
+    }
 
-      const tick = () => {
-        const phrase = phrases[phraseIndex];
+    const typeSpeed = 82;
+    const deleteSpeed = 44;
+    const completedPause = 1000;
+    const betweenPhrasesPause = 260;
 
-        if (!deleting) {
-          charIndex += 1;
-          typeTarget.textContent = phrase.slice(0, charIndex);
-
-          if (charIndex === phrase.length) {
-            deleting = true;
-            window.setTimeout(tick, 1000);
-            return;
-          }
-          window.setTimeout(tick, 78);
-        } else {
-          charIndex -= 1;
-          typeTarget.textContent = phrase.slice(0, charIndex);
-
-          if (charIndex === 0) {
-            deleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            window.setTimeout(tick, 280);
-            return;
-          }
-          window.setTimeout(tick, 42);
+    while (true) {
+      for (const phrase of phrases) {
+        // Type one character at a time.
+        for (let index = 1; index <= phrase.length; index += 1) {
+          typeTarget.textContent = phrase.slice(0, index);
+          await wait(typeSpeed);
         }
-      };
 
-      window.setTimeout(tick, 350);
+        // Leave the complete phrase visible while the thin cursor blinks.
+        await wait(completedPause);
+
+        // Delete smoothly before moving to the next phrase.
+        for (let index = phrase.length - 1; index >= 0; index -= 1) {
+          typeTarget.textContent = phrase.slice(0, index);
+          await wait(deleteSpeed);
+        }
+
+        await wait(betweenPhrasesPause);
+      }
     }
   }
 
-  const revealItems = document.querySelectorAll('[data-reveal]');
+  // Start after the first paint so the hero appears naturally before typing begins.
+  if (typeTarget) {
+    window.setTimeout(() => {
+      runTypewriter().catch(() => {
+        // Fallback: if animation is interrupted, keep useful visible text.
+        typeTarget.textContent = "CS Student";
+      });
+    }, 260);
+  }
+
+  /* ---------- 4. One-time fade-up reveal on scroll ---------- */
+  const revealItems = document.querySelectorAll("[data-reveal]");
+
   if (revealItems.length) {
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      revealItems.forEach((item) => item.classList.add('is-visible'));
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      // Never hide content if the browser cannot or should not animate it.
+      revealItems.forEach((item) => item.classList.add("is-visible"));
     } else {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            // Each element animates once, then stops being observed.
+            entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -5% 0px"
+        }
+      );
 
       revealItems.forEach((item) => observer.observe(item));
     }
   }
 
-  const copyButton = document.querySelector('[data-copy-email]');
+  /* ---------- 5. Copy-email button ---------- */
+  const copyButton = document.querySelector("[data-copy-email]");
+
   if (copyButton) {
     const email = copyButton.dataset.copyEmail;
-    const label = copyButton.querySelector('.copy-label');
-    let timer;
+    const label = copyButton.querySelector(".copy-label");
+    let resetTimer;
 
-    const fallbackCopy = () => {
-      const input = document.createElement('textarea');
-      input.value = email;
-      input.setAttribute('readonly', '');
-      input.style.position = 'fixed';
-      input.style.opacity = '0';
-      document.body.appendChild(input);
-      input.select();
-      document.execCommand('copy');
-      input.remove();
-    };
+    // Fallback for browsers where the modern Clipboard API is unavailable.
+    function fallbackCopy() {
+      const temporaryField = document.createElement("textarea");
+      temporaryField.value = email;
+      temporaryField.setAttribute("readonly", "");
+      temporaryField.style.position = "fixed";
+      temporaryField.style.opacity = "0";
+      document.body.appendChild(temporaryField);
+      temporaryField.select();
+      document.execCommand("copy");
+      temporaryField.remove();
+    }
 
-    copyButton.addEventListener('click', async () => {
+    copyButton.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(email);
       } catch (_) {
         fallbackCopy();
       }
 
-      window.clearTimeout(timer);
-      if (label) label.textContent = 'Copied ✓';
-      copyButton.classList.add('is-copied');
+      window.clearTimeout(resetTimer);
 
-      timer = window.setTimeout(() => {
-        if (label) label.textContent = 'Copy Email';
-        copyButton.classList.remove('is-copied');
+      if (label) label.textContent = "Copied ✓";
+      copyButton.classList.add("is-copied");
+
+      // Minimal feedback lasts exactly two seconds, then returns to normal.
+      resetTimer = window.setTimeout(() => {
+        if (label) label.textContent = "Copy Email";
+        copyButton.classList.remove("is-copied");
       }, 2000);
     });
   }
