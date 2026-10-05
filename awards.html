@@ -50,7 +50,7 @@
   </script>
 
   <!-- One shared stylesheet keeps every page visually consistent. -->
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/style.css?v=4">
 
 </head>
 <body>
@@ -133,24 +133,39 @@
   <p>A concise record of academic recognition from the University of Calgary.</p>
 </section>
 
-<!-- Awards are kept as simple rows instead of resume-style cards. -->
+<!-- Awards remain simple rows; linked records get a small verification button. -->
 <section class="page-section shell" aria-labelledby="awards-list-title">
   <h2 id="awards-list-title" class="sr-only">Awards list</h2>
 
   <div class="award-list">
     <article class="award-item" data-reveal>
-      <p>Dean’s List — Faculty of Science, University of Calgary</p>
-      <span class="year">2024 — 2026</span>
+      <p>Dean’s List (Faculty of Science, 2025), University of Calgary</p>
+      <div class="award-aside">
+        <span class="year">2025</span>
+        <a class="mini-button" href="https://science.ucalgary.ca/about/excellence-and-awards/deans-list" target="_blank" rel="noopener noreferrer">Dean’s List page ↗</a>
+      </div>
     </article>
 
-    <article class="award-item" data-reveal style="--reveal-delay: 70ms;">
-      <p>University of Calgary International Undergraduate Award</p>
-      <span class="year">2026</span>
+    <article class="award-item" data-reveal style="--reveal-delay: 60ms;">
+      <p>University of Calgary International Undergraduate Award, University of Calgary</p>
+      <div class="award-aside">
+        <span class="year">2026</span>
+      </div>
     </article>
 
-    <article class="award-item" data-reveal style="--reveal-delay: 140ms;">
-      <p>Dean’s International Admission &amp; President’s Admission Scholarship</p>
-      <span class="year">2024</span>
+    <article class="award-item" data-reveal style="--reveal-delay: 120ms;">
+      <p>Dean’s List (Faculty of Science, 2024), University of Calgary</p>
+      <div class="award-aside">
+        <span class="year">2024</span>
+        <a class="mini-button" href="https://science.ucalgary.ca/about/excellence-and-awards/deans-list" target="_blank" rel="noopener noreferrer">Dean’s List page ↗</a>
+      </div>
+    </article>
+
+    <article class="award-item" data-reveal style="--reveal-delay: 180ms;">
+      <p>Dean’s International Admission Scholarship and President’s Admission Scholarship, University of Calgary</p>
+      <div class="award-aside">
+        <span class="year">2024</span>
+      </div>
     </article>
   </div>
 </section>
@@ -174,6 +189,6 @@
 </footer>
 
 <!-- One shared script powers theme switching, menus, typewriter, reveal, and copy-email. -->
-<script src="/script.js" defer></script>
+<script src="/script.js?v=4" defer></script>
 </body>
 </html>

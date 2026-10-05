@@ -50,7 +50,7 @@
   </script>
 
   <!-- One shared stylesheet keeps every page visually consistent. -->
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/style.css?v=4">
 
 </head>
 <body>
@@ -130,15 +130,40 @@
 <section class="page-hero shell">
   <p class="page-eyebrow">03 / certifications</p>
   <h1>Learning, continuously.</h1>
-  <p>Certifications will be added here as they are completed.</p>
+  <p>Certifications I’m currently studying and working toward.</p>
 </section>
 
-<!-- Placeholder stays honest: nothing is presented as completed before it is. -->
-<section class="page-section shell">
-  <div class="empty-panel" data-reveal>
-    <p class="label">currently working on</p>
-    <h2>[CERTIFICATION NAME]</h2>
-    <p>Provider, credential link, and completion date will go here when ready.</p>
+<!-- These are study targets, not completed credentials. -->
+<section class="page-section shell" aria-labelledby="certification-list-title">
+  <h2 id="certification-list-title" class="sr-only">Certifications in progress</h2>
+
+  <div class="cert-list">
+    <article class="cert-item" data-reveal>
+      <div class="cert-copy">
+        <p class="cert-status">studying / working on</p>
+        <h2>AWS Certified Cloud Practitioner</h2>
+        <p>Foundational AWS Cloud knowledge covering core services, cloud concepts, security, pricing, and terminology.</p>
+      </div>
+      <a class="mini-button" href="https://aws.amazon.com/certification/certified-cloud-practitioner/" target="_blank" rel="noopener noreferrer">Official certification ↗</a>
+    </article>
+
+    <article class="cert-item" data-reveal style="--reveal-delay: 70ms;">
+      <div class="cert-copy">
+        <p class="cert-status">studying / working on</p>
+        <h2>AWS Certified Solutions Architect - Associate</h2>
+        <p>Designing secure, resilient, high-performing, and cost-optimized solutions using AWS services and the AWS Well-Architected Framework.</p>
+      </div>
+      <a class="mini-button" href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank" rel="noopener noreferrer">Official certification ↗</a>
+    </article>
+
+    <article class="cert-item" data-reveal style="--reveal-delay: 140ms;">
+      <div class="cert-copy">
+        <p class="cert-status">studying / working on</p>
+        <h2>CompTIA Security+</h2>
+        <p>Core cybersecurity skills for identifying and addressing threats and vulnerabilities, security operations, risk management, and incident response.</p>
+      </div>
+      <a class="mini-button" href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener noreferrer">Official certification ↗</a>
+    </article>
   </div>
 </section>
 </main>
@@ -161,6 +186,6 @@
 </footer>
 
 <!-- One shared script powers theme switching, menus, typewriter, reveal, and copy-email. -->
-<script src="/script.js" defer></script>
+<script src="/script.js?v=4" defer></script>
 </body>
 </html>

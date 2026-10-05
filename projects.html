@@ -50,7 +50,7 @@
   </script>
 
   <!-- One shared stylesheet keeps every page visually consistent. -->
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/style.css?v=4">
 
 </head>
 <body>
@@ -130,30 +130,96 @@
 <section class="page-hero shell">
   <p class="page-eyebrow">01 / projects</p>
   <h1>Selected work.</h1>
-  <p>A growing collection of things I’ve built, analyzed, and learned from. Full project details will be added as they are ready.</p>
+  <p>Projects built across data, machine learning, software, and cybersecurity.</p>
 </section>
 
-<!-- Project titles stay intentionally minimal for now. -->
+<!-- Detailed project entries use the same visual language as the homepage. -->
 <section class="page-section shell" aria-labelledby="project-list-title">
   <h2 id="project-list-title" class="sr-only">Project list</h2>
 
-  <div class="project-list">
-    <div class="project-row" data-reveal>
-      <p class="project-index">01</p>
-      <h3>Calgary Traffic Risk Intelligence System</h3>
-      <p class="project-meta">2026</p>
-    </div>
+  <div class="project-showcase">
 
-    <div class="project-row" data-reveal style="--reveal-delay: 70ms;">
-      <p class="project-index">02</p>
-      <h3>Campus Gym Usage Analysis</h3>
-      <p class="project-meta">2025</p>
-    </div>
+    <article class="project-feature" data-reveal>
+      <div class="project-feature-head">
+        <p class="project-index">01</p>
+        <h3>Calgary Traffic Risk Intelligence</h3>
+        <p class="project-meta">2026</p>
+      </div>
 
-    <div class="project-row" data-reveal style="--reveal-delay: 140ms;">
-      <p class="project-index">03</p>
-      <h3>Habit Tracker</h3>
-      <p class="project-meta">2025</p>
+      <!-- Real screenshot supplied by Farhan from the Streamlit dashboard. -->
+      <figure class="project-visual">
+        <img
+          src="/assets/projects/calgary-traffic-risk-dashboard.png"
+          alt="Calgary Traffic Risk Intelligence Streamlit dashboard showing incident totals, hotspots, traffic-control locations, and traffic charts"
+          width="1919"
+          height="914"
+          loading="lazy"
+          decoding="async"
+        >
+      </figure>
+
+      <p class="project-description">
+        Built an end-to-end traffic analytics and machine learning project using more than 64,000 Calgary traffic incident records. The project combines temporal analysis, DBSCAN-based hotspot detection, nearest traffic-control matching, historical weather data, a custom intersection-level risk index, and an hourly incident-activity prediction model. The results are presented through an interactive Streamlit dashboard with maps, charts, risk insights, and model predictions.
+      </p>
+
+      <p class="project-stack" aria-label="Technologies used">
+        Python · Pandas · NumPy · scikit-learn · Plotly · Streamlit · Jupyter · DBSCAN · BallTree · Git/GitHub
+      </p>
+
+      <div class="project-actions" aria-label="Calgary Traffic Risk Intelligence links">
+        <a class="button" href="https://calgary-traffic-risk-ai.streamlit.app/" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+        <a class="button" href="https://github.com/AhnafFarhanKhan/calgary-traffic-risk-intelligence" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </article>
+
+    <article class="project-feature" data-reveal style="--reveal-delay: 70ms;">
+      <div class="project-feature-head">
+        <p class="project-index">02</p>
+        <h3>Exploring Student Perceptions and Motivations Behind Campus Gym Usage</h3>
+        <p class="project-meta">2025</p>
+      </div>
+
+      <p class="project-description">
+        Collaborated in a team to analyze University of Calgary students’ campus gym usage, motivations, and barriers. My primary contribution was <strong>data cleaning and preparation</strong>, including removing irrelevant metadata and incomplete responses, reorganizing survey data into meaningful groups, standardizing numerical coding, and improving the dataset structure for analysis and visualization. The cleaned dataset supported the team’s final statistical analysis and findings.
+      </p>
+
+      <p class="project-stack" aria-label="Technologies and methods used">
+        Excel · Qualtrics · Data Cleaning · Statistical Analysis · Data Visualization
+      </p>
+
+      <div class="project-actions" aria-label="Campus gym analysis links">
+        <a class="button" href="https://github.com/AhnafFarhanKhan/Data_201_FINAL-PROJECT" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a class="button" href="/assets/reports/campus-gym-usage-report.pdf" target="_blank" rel="noopener noreferrer">PDF Report ↗</a>
+      </div>
+    </article>
+
+    <article class="project-feature" data-reveal style="--reveal-delay: 140ms;">
+      <div class="project-feature-head">
+        <p class="project-index">03</p>
+        <h3>Cybersecurity Hacking Challenge</h3>
+        <p class="project-meta">2025</p>
+      </div>
+
+      <p class="project-description">
+        Completed an individual cybersecurity project in a controlled virtual lab, working through a full attack path from network discovery to retrieving a target file. I used tools and techniques including <strong>Nmap, service enumeration, web application inspection, Vigenère cipher decryption, SSH, Linux file permissions, steganography, privilege escalation, and SCP</strong>. The project strengthened my understanding of how small security weaknesses can combine into larger system vulnerabilities.
+      </p>
+
+      <p class="project-stack" aria-label="Technologies and methods used">
+        Nmap · SSH · Linux · VirtualBox · Vigenère Cipher · Steghide · SCP
+      </p>
+
+      <div class="project-actions" aria-label="Cybersecurity hacking challenge links">
+        <a class="button" href="/assets/reports/cybersecurity-hacking-challenge-report.pdf" target="_blank" rel="noopener noreferrer">PDF Report ↗</a>
+      </div>
+    </article>
+
+    <!-- Habit Tracker stays intentionally minimal until a fuller case study is added. -->
+    <div class="project-list project-list-single">
+      <div class="project-row" data-reveal style="--reveal-delay: 180ms;">
+        <p class="project-index">04</p>
+        <h3>Habit Tracker</h3>
+        <p class="project-meta">2025</p>
+      </div>
     </div>
   </div>
 </section>
@@ -177,6 +243,6 @@
 </footer>
 
 <!-- One shared script powers theme switching, menus, typewriter, reveal, and copy-email. -->
-<script src="/script.js" defer></script>
+<script src="/script.js?v=4" defer></script>
 </body>
 </html>

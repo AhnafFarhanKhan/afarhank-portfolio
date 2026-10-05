@@ -479,7 +479,7 @@ body::after {
   vector-effect: non-scaling-stroke;
   stroke-dasharray: 220;
   stroke-dashoffset: 220;
-  animation: underline-draw 850ms var(--ease-out) 420ms forwards;
+  animation: underline-draw 1450ms var(--ease-out) 480ms forwards;
 }
 
 @keyframes underline-draw {
@@ -1040,5 +1040,211 @@ body::after {
 
   .name-underline path {
     stroke-dashoffset: 0 !important;
+  }
+}
+
+
+/* ---------- 12. Detailed project entries ---------- */
+/*
+   Richer project content uses the same thin borders, small type, and red accent
+   as the rest of the portfolio so the redesign does not feel like a new theme.
+*/
+.project-showcase {
+  border-top: 1px solid var(--line);
+}
+
+.project-feature {
+  padding: clamp(26px, 4vw, 38px) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-feature-head {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.project-feature-head h3 {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.28rem);
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.project-visual {
+  margin: 0 0 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.project-visual img {
+  width: 100%;
+  height: auto;
+  transition: transform 500ms var(--ease-out), opacity 250ms ease;
+}
+
+.project-feature:hover .project-visual img {
+  transform: scale(1.006);
+}
+
+.project-description {
+  max-width: 960px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.project-description strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.project-stack {
+  max-width: 960px;
+  margin: 14px 0 0;
+  color: var(--faint);
+  font-size: 10.5px;
+  line-height: 1.65;
+}
+
+.project-stack::before {
+  content: "tools: ";
+  color: var(--accent);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+/* The final minimal project row sits inside the same showcase border system. */
+.project-list-single {
+  border-top: 0;
+}
+
+.project-list-single .project-row {
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---------- 13. Awards and certifications utility actions ---------- */
+.award-aside {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mini-button {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  font-size: 9.5px;
+  white-space: nowrap;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 220ms var(--ease-out);
+}
+
+.mini-button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--surface-soft);
+  transform: translateY(-1px);
+}
+
+.cert-list {
+  border-top: 1px solid var(--line);
+}
+
+.cert-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cert-copy {
+  max-width: 790px;
+}
+
+.cert-status {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 9.5px;
+}
+
+.cert-copy h2 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* This page uses real headings; suppress the generic # prefix here. */
+.cert-copy h2::before {
+  content: none;
+}
+
+.cert-copy p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11.5px;
+}
+
+@media (max-width: 720px) {
+  .project-feature-head {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .project-feature-head .project-meta {
+    grid-column: 2;
+    margin-top: -6px;
+  }
+
+  .project-description {
+    font-size: 12px;
+  }
+
+  .project-actions .button {
+    min-height: 34px;
+  }
+
+  .award-aside {
+    justify-content: flex-start;
+  }
+
+  .cert-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cert-item .mini-button {
+    justify-self: start;
+  }
+}
+
+/* New project/award/certification effects also respect reduced-motion settings. */
+@media (prefers-reduced-motion: reduce) {
+  .project-visual img,
+  .mini-button {
+    transition-duration: 0.01ms !important;
+    transform: none !important;
   }
 }
